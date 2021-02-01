@@ -1,3 +1,4 @@
+// instantiate our app
 const express = require("express");
 
 const PORT = process.env.PORT || 8000;
@@ -12,9 +13,6 @@ const config = require("./config/extra-config");
 const compression = require("compression");
 // Express settings
 // ================
-
-// instantiate our app
-const app = express();
 
 //allow sessions
 // app.use(session({ secret: 'booty Mctootie', cookie: { maxAge: 60000 }}));
