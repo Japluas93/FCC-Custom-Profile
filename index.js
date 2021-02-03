@@ -1,16 +1,17 @@
 // instantiate our app
 const express = require("express");
+const session = require("express-session");
+const passport = require("./api-server/config/passport");
+const config = require("./api-server/config/extra-config");
+const compression = require("compression")
 
 const PORT = process.env.PORT || 8000;
 
 const app = express();
 
 const path = require("path");
-const logger = require("morgan");
-const session = require("express-session");
-const passport = require("./config/passport");
-const config = require("./config/extra-config");
-const compression = require("compression");
+// const logger = require("morgan");
+// const compression = require("compression");
 // Express settings
 // ================
 
@@ -30,12 +31,15 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-const isAuth = require("./config/middleware/isAuthenticated");
-const authCheck = require("./config/middleware/attachAuthenticationStatus");
+const isAuth = require("./api-server/config/middleware/isAuthenticated");
+const authCheck = require("./api-server/config/middleware/attachAuthenticationStatus");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger("dev"));
+// app.use(logger("dev"));
+
+
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -43,13 +47,20 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({ secret: config.sessionKey, resave: true, saveUninitialized: true })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(authCheck);
 
-app.use(compression());
+const application = require('./api-server/routes/application');
+		const users = require('./api-server/routes/users');
+		const customs = require('./api-server/routes/customs');
+		
 
-require("./routes")(app);
+		app.use('/', application);
+		app.use('/users', users);
+		app.use('/trips', customs);
+	
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -68,5 +79,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-// our module get's exported as app.
-module.exports = app;
+
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
+

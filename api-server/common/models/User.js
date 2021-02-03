@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
   }
   User.associate = function(models) {
     // associations can be defined here
-    User.hasMany(models.Custom, {
+    User.hasOne(models.Custom, {
       onDelete: "cascade"
     });
   }

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  const customProfile = sequelize.define('Custom Profile', {
+  const Custom = sequelize.define('Custom', {
     color: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -15,13 +15,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
   });
-  customProfile.associate = function (models) {
+  Custom.associate = function (models) {
     // associations can be defined here
-    customProfile.belongsTo(models.User, {
+    Custom.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
   }
-  return customProfile;
+  return Custom;
 }
