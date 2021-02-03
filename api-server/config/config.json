@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "root",
+    "password": "yE5KN3Om8!",
+    "database": "FCC_development",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "yE5KN3Om8!",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
+}

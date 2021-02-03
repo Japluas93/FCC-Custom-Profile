@@ -21,6 +21,10 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     // Hooks are automatic methods that run during various phases of the User Model lifecycle
@@ -36,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
   }
   User.associate = function(models) {
     // associations can be defined here
-    User.hasMany(models.Trip, {
+    User.hasMany(models.Custom, {
       onDelete: "cascade"
     });
   }
