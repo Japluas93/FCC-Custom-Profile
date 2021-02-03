@@ -11,7 +11,6 @@ const app = express();
 
 const path = require("path");
 // const logger = require("morgan");
-// const compression = require("compression");
 // Express settings
 // ================
 
@@ -52,14 +51,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(authCheck);
 
+// "Application" refers to the index page. This is the first web page the user sees and is where you log-in. 
 const application = require('./api-server/routes/application');
-		const users = require('./api-server/routes/users');
-		const customs = require('./api-server/routes/customs');
+// "Users" is where you're supposed to register if you don't have an account.
+const users = require('./api-server/routes/users');
+// "Customs" refers to the actual user profile. I just called it "customs" because it refers to custom user profiles. 
+const customs = require('./api-server/routes/customs');
 		
 
 		app.use('/', application);
 		app.use('/users', users);
-		app.use('/trips', customs);
+		app.use('/customs', customs);
 	
 
 // catch 404 and forward to error handler
@@ -80,9 +82,9 @@ app.use((err, req, res, next) => {
 });
 
 
-db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+app.listen(PORT, function() {
+  // Log (server-side) when our server has started
+  console.log("Server listening on: http://localhost:" + PORT);
 });
+
 
