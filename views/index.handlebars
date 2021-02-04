@@ -1,3 +1,4 @@
+{{>navbar}}
 <section class="hero has-background-link-light is-fullheight">
     <div class="hero-body">
         <div class="container has-text-centered">
@@ -5,9 +6,9 @@
                 <h3 class="title has-text-black">Login</h3>
                 <p class="subtitle has-text-black">Please login to proceed.</p>
                 <div class="box">
-                    <figure class="avatar">
-                        <img src="https://placehold.it/128x128">
-                    </figure>
+                    {{!-- <figure class="avatar">
+                        <img src="">
+                    </figure> --}}
                     <form>
                         <div class="field">
                             <div class="control">
@@ -30,10 +31,11 @@
                                 aria-hidden="true"></i></button>
                     </form>
                 </div>
-                </div>
-                
-                <p class="subtitle has-text-black">SignUp</p>
+            </div>
+            <div class="login-help">
+                <a href="./users/register">Register</a> - 
             </div>
         </div>
+    </div>
 </section>
 {{>footer}}
