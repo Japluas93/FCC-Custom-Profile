@@ -4,7 +4,6 @@ var router  = express.Router();
 var application_controller = require('../controllers/application_controller');
 
 router.get('/', application_controller.index);
-router.get('/profile', application_controller.profile);
 
 module.exports = router;
 
