@@ -1,6 +1,6 @@
-constdb=require('../common/models');
+const db=require('../common/models');
 
-exports.profile = (req, res)=>{
+exports.index = (req, res)=>{
   res.render("./profile/home")
 };
 exports.profile = function(req, res) {
@@ -10,7 +10,7 @@ exports.profile = function(req, res) {
     }
   }).then(function(dbCustom) {
     console.log(dbCustom);
-    res.render('customs/customs', {
+    res.render('./profile/home', {
       layout: 'main-customs',
       custom: dbCustom
     });
