@@ -1,1 +1,11 @@
-CREATE DATABASE FCC_development
+CREATE DATABASE IF NOT EXISTS FCC_development
+
+USE FCC_development;
+
+CREATE TABLE User (
+id INT AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(60) NOT NULL,
+email VARCHAR(80) NOT NULL,
+user_password VARCHAR(20) NOT NULL,
+user_location VARCHAR(80) NOT NULL
+);
